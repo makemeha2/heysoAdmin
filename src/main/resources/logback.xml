@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+    <!--    <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger[%method:%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="console-simple" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <Pattern>%d{HH:mm:ss.SSS} %-5level %logger[%method:%line] - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.noname.sbExersise.repository" level="DEBUG" appender-ref="console-simple" />
+
+    <logger name="jdbc.sqlonly" level="debug" appender-ref="console" />
+    <logger name="jdbc.sqltiming" level="off" appender-ref="console" />
+    <logger name="jdbc.audit" level="off" appender-ref="console" />
+    <logger name="jdbc.resultset" level="off" appender-ref="console" />
+    <logger name="jdbc.resultsettable" level="debug" appender-ref="console" />
+    <logger name="jdbc.connection" level="off" appender-ref="console" />
+
+    <root level="INFO">
+        <appender-ref ref="console"/>
+    </root>
+
+</configuration>

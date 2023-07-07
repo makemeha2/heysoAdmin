@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.noname.heysoAdmin.repository.LiveShoppingMapper">
+    <select id="getList" resultType="com.noname.heysoAdmin.repository.entity.LiveShoppingItem">
+        SELECT
+        Idx
+        , Title
+        , Description
+        , PageUrl as PageUrl
+        , ImageUrl as ImageUrl
+        , UseYN
+        , CreateId
+        , CreateDate
+        , UpdateId
+        , UpdateDate
+        FROM tb_liveshop
+        WHERE
+        UseYN = 1
+        AND Idx > ((#{pageIndex} - 1) * #{pageSize})
+        <if test="@com.noname.heysoAdmin.util.EmptyHandler@notEmpty(searchText)">
+            AND (Title like concat('%', #{searchText}, '%') OR Description like concat('%', #{searchText}, '%'))
+        </if>
+        ORDER BY Idx DESC
+        LIMIT #{pageSize}
+    </select>
+</mapper>

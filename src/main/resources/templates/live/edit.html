@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="fragments/header :: header('Home')">
+  <title>HomePage</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <ul th:replace="fragments/lp :: lp" />
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <nav th:replace="fragments/toolbar :: toolbar" />
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Live 방송 관리</h1>
+
+        <!-- DataTales Example -->
+        <div class="card body row col-12">
+            <div class="p-5">
+              <form>
+                <div class="mb-3">
+                  <label for="txtTitle" class="form-label">제목</label>
+                  <input type="text" class="form-control" id="txtTitle">
+                </div>
+                <div class="mb-3">
+                  <label for="txtDescription" class="form-label">설명</label>
+                  <input type="text" class="form-control" id="txtDescription">
+                </div>
+                <div class="mb-3">
+                  <label for="txtPageUrl" class="form-label">페이지 경로</label>
+                  <input type="text" class="form-control" id="txtPageUrl">
+                </div>
+                <div class="mb-3">
+                  <label for="txtImageUrl" class="form-label">이미지 경로</label>
+                  <input type="text" class="form-control" id="txtImageUrl">
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="chkUseYN">
+                  <label class="form-check-label" for="chkUseYN">사용 여부</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-info">Close</button>
+                <br />
+                <hr />
+                <div class="mb-3 row">
+                  <label class="col-sm-2 col-form-label">최초등록자 / 일시</label>
+                  <div class="col">
+                    <label class="col-form-label">정소영 (2023-01-01 12:34:56)</label>
+                  </div>
+                  <label class="col-sm-2 col-form-label">최종수정자 / 일시</label>
+                  <div class="col">
+                    <label class="col-form-label">최혜진 (2024-12-31 14:56:23)</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+    <footer th:replace="fragments/footer :: footer" />
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+<div th:insert="fragments/footerUtil" />
+
+</body>
+</html>

@@ -42,4 +42,14 @@ public class LiveShoppingController {
 
         return "live";
     }
+
+    @GetMapping("/live/create")
+    public String create(Model model)
+    {
+        LiveShoppingItem item = new LiveShoppingItem();
+
+        model.addAttribute("item", item);
+
+        return "live/edit";
+    }
 }

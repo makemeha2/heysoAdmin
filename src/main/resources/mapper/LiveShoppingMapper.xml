@@ -3,18 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.noname.heysoAdmin.repository.LiveShoppingMapper">
-    <select id="getList" resultType="com.noname.heysoAdmin.repository.entity.LiveShoppingItem">
-        SELECT
+    <sql id="liveShoppingColumns">
         Idx
         , Title
         , Description
-        , PageUrl as PageUrl
-        , ImageUrl as ImageUrl
+        , PageUrl
+        , ImageUrl
         , UseYN
         , CreateId
         , CreateDate
         , UpdateId
         , UpdateDate
+    </sql>
+
+    <select id="getList" resultType="com.noname.heysoAdmin.entity.LiveShoppingItem">
+        SELECT
+            <include refid="liveShoppingColumns"></include>
         FROM tb_liveshop
         WHERE
         UseYN = 1
@@ -25,4 +29,34 @@
         ORDER BY Idx DESC
         LIMIT #{pageSize}
     </select>
+
+    <select id="getOne" parameterType="int" resultType="com.noname.heysoAdmin.entity.LiveShoppingItem">
+        SELECT
+            <include refid="liveShoppingColumns"></include>
+        FROM tb_liveshop
+        WHERE
+        UseYN = 1 AND Idx = #{idx}
+    </select>
+
+    <insert id="insertItem" parameterType="com.noname.heysoAdmin.dto.LiveShoppingItemDto"
+            useGeneratedKeys="true" keyProperty="idx" >
+        INSERT INTO tb_liveshop (
+             <include refid="liveShoppingColumns"></include>
+        ) VALUES (
+            null
+            , #{title}
+            , #{description}
+            , #{pageUrl}
+            , #{imageUrl}
+            , 1
+            , #{curUserId}
+            , NOW()
+            , #{curUserId}
+            , NOW()
+        )
+<!--        <selectKey keyProperty="Idx" resultType="Integer">-->
+<!--            SELECT LAST_INSERT_ID()-->
+<!--        </selectKey>-->
+    </insert>
+
 </mapper>

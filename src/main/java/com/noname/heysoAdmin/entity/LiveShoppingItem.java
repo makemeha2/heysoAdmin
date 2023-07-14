@@ -1,4 +1,4 @@
-package com.noname.heysoAdmin.repository.entity;
+package com.noname.heysoAdmin.entity;
 
 import lombok.Getter;
 import lombok.Setter;

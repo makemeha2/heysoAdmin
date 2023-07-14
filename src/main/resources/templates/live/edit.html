@@ -27,39 +27,45 @@
         <!-- DataTales Example -->
         <div class="card body row col-12">
             <div class="p-5">
-              <form>
+              <form action="/live/create" th:object="${item}" method="post" >
                 <div class="mb-3">
                   <label for="txtTitle" class="form-label">제목</label>
-                  <input type="text" class="form-control" id="txtTitle">
+                  <input type="text" class="form-control" id="txtTitle" th:field="*{title}" />
                 </div>
                 <div class="mb-3">
                   <label for="txtDescription" class="form-label">설명</label>
-                  <input type="text" class="form-control" id="txtDescription">
+                  <input type="text" class="form-control" id="txtDescription" th:field="*{description}" />
                 </div>
                 <div class="mb-3">
                   <label for="txtPageUrl" class="form-label">페이지 경로</label>
-                  <input type="text" class="form-control" id="txtPageUrl">
+                  <input type="text" class="form-control" id="txtPageUrl" th:field="*{pageUrl}" />
                 </div>
                 <div class="mb-3">
                   <label for="txtImageUrl" class="form-label">이미지 경로</label>
-                  <input type="text" class="form-control" id="txtImageUrl">
+                  <input type="text" class="form-control" id="txtImageUrl" th:field="*{imageUrl}" />
                 </div>
                 <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="chkUseYN">
+                  <input type="checkbox" class="form-check-input" id="chkUseYN" th:field="*{useYN}" >
                   <label class="form-check-label" for="chkUseYN">사용 여부</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="submit" class="btn btn-info">Close</button>
+
+                <div class="mb-10 text-right">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" class="btn btn-info">Close</button>
+                </div>
+
                 <br />
                 <hr />
                 <div class="mb-3 row">
-                  <label class="col-sm-2 col-form-label">최초등록자 / 일시</label>
+                  <label class="col-sm-2 col-form-label" for="txtCreateInfo" />최초등록자 / 일시</label>
                   <div class="col">
-                    <label class="col-form-label">정소영 (2023-01-01 12:34:56)</label>
+                    <input type="text" readonly class="form-control-plaintext" id="txtCreateInfo"
+                           th:value="${item.createId + ' (' + #temporals.format(item.createDate, 'yyyy-MM-dd HH:mm:ss') + ')'}" />
                   </div>
-                  <label class="col-sm-2 col-form-label">최종수정자 / 일시</label>
+                  <label class="col-sm-2 col-form-label" for="txtUpdateInfo" />최종수정자 / 일시</label>
                   <div class="col">
-                    <label class="col-form-label">최혜진 (2024-12-31 14:56:23)</label>
+                    <input type="text" readonly class="form-control-plaintext" id="txtUpdateInfo"
+                           th:value="${item.updateId + ' (' + #temporals.format(item.updateDate, 'yyyy-MM-dd HH:mm:ss') + ')'}" />
                   </div>
                 </div>
               </form>
